@@ -1,0 +1,52 @@
+.loader {
+    position: relative;
+    display: inline-block;
+    flex: none;
+    box-sizing: content-box !important;
+    width: 55px;
+    height: 3.125em;
+    margin: 0 1.25em;
+    padding: 1.25em 0;
+    vertical-align: middle;
+    text-align: center;
+    top: 50%;
+    left: 40%;
+}
+
+.loader__square {
+    position: absolute;
+    top: 60%;
+    right: 0;
+    left: 0;
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    animation-duration: 1.5s;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+}
+
+.loader__square {
+    background: hsl(0, 0%, 80%);
+    animation-name: sphere1;
+}
+
+.loader_black> .loader__square {
+    background: hsl(0, 0%, 10%);
+    animation-name: sphere1;
+}
+
+@keyframes sphere1 {
+    0% {
+        transform: translateX(-25px) scale(0);
+    }
+    50% {
+        transform: translateX(0) scale(1);
+    }
+    100% {
+        transform: translateX(25px) scale(0);
+    }
+}

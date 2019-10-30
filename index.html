@@ -1,0 +1,185 @@
+<html>
+<meta charset="UTF-8">
+
+<head>
+    <link rel="icon" type="image/png" href="assets/images/favicon.ico" />
+    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style/_reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/loader.css">
+
+</head>
+
+<body>
+    <header>
+        <!-- <div id="title">
+            Unconscious Teachers
+        </div> -->
+        <menu>
+
+            <p id="menu">
+                An investigation into the geographies of the machine learning dataset MS COCO
+            </p>
+            <info>(i)</info>
+        </menu>
+    </header>
+    <article>
+        <div class="left">
+            <div class="container">
+                <div class="contain">
+                    <p class="menutext">Select a <underline>category</underline> from the ones present in the dataset.
+                    </p>
+                    <div id="menuContainer">
+                        <input type="checkbox" value="airplane" /><label>airplane</label>
+                        <br><input type="checkbox" value="apple" /><label>apple</label>
+                        <br><input type="checkbox" value="backpack" /><label>backpack</label>
+                        <br><input type="checkbox" value="banana" /><label>banana</label>
+                        <br><input type="checkbox" value="baseball bat" /><label>baseball bat</label>
+                        <br><input type="checkbox" value="baseball glove" /><label>baseball glove</label>
+                        <br><input type="checkbox" value="bear" /><label>bear</label>
+                        <br><input type="checkbox" value="bed" /><label>bed</label>
+                        <br><input type="checkbox" value="bench" /><label>bench</label>
+                        <br><input type="checkbox" value="bicycle" /><label>bicycle</label>
+                        <br><input type="checkbox" value="bird" /><label>bird</label>
+                        <br><input type="checkbox" value="boat" /><label>boat</label>
+                        <br><input type="checkbox" value="book" /><label>book</label>
+                        <br><input type="checkbox" value="bottle" /><label>bottle</label>
+                        <br><input type="checkbox" value="bowl" /><label>bowl</label>
+                        <br><input type="checkbox" value="broccoli" /><label>broccoli</label>
+                        <br><input type="checkbox" value="bus" /><label>bus</label>
+                        <br><input type="checkbox" value="cake" /><label>cake</label>
+                        <br><input type="checkbox" value="car" /><label>car</label>
+                        <br><input type="checkbox" value="cat" /><label>cat</label>
+                        <br><input type="checkbox" value="cell phone" /><label>cell phone</label>
+                        <br><input type="checkbox" value="chair" /><label>chair</label>
+                        <br><input type="checkbox" value="clock" /><label>clock</label>
+                        <br><input type="checkbox" value="couch" /><label>couch</label>
+                        <br><input type="checkbox" value="cow" /><label>cow</label>
+                        <br><input type="checkbox" value="cup" /><label>cup</label>
+                        <br><input type="checkbox" value="dining table" /><label>dining table</label>
+                        <br><input type="checkbox" value="dog" /><label>dog</label>
+                        <br><input type="checkbox" value="donut" /><label>donut</label>
+                        <br><input type="checkbox" value="elephant" /><label>elephant</label>
+                        <br><input type="checkbox" value="fire hydrant" /><label>fire hydrant</label>
+                        <br><input type="checkbox" value="fork" /><label>fork</label>
+                        <br><input type="checkbox" value="frisbee" /><label>frisbee</label>
+                        <br><input type="checkbox" value="giraffe" /><label>giraffe</label>
+                        <br><input type="checkbox" value="hair drier" /><label>hair drier</label>
+                        <br><input type="checkbox" value="handbag" /><label>handbag</label>
+                        <br><input type="checkbox" value="horse" /><label>horse</label>
+                        <br><input type="checkbox" value="hot dog" /><label>hot dog</label>
+                        <br><input type="checkbox" value="keyboard" /><label>keyboard</label>
+                        <br><input type="checkbox" value="kite" /><label>kite</label>
+                        <br><input type="checkbox" value="knife" /><label>knife</label>
+                        <br><input type="checkbox" value="laptop" /><label>laptop</label>
+                        <br><input type="checkbox" value="microwave" /><label>microwave</label>
+                        <br><input type="checkbox" value="motorcycle" /><label>motorcycle</label>
+                        <br><input type="checkbox" value="mouse" /><label>mouse</label>
+                        <br><input type="checkbox" value="orange" /><label>orange</label>
+                        <br><input type="checkbox" value="oven" /><label>oven</label>
+                        <br><input type="checkbox" value="parking meter" /><label>parking meter</label>
+                        <br><input type="checkbox" value="person" /><label>person </label>
+                        <br><input type="checkbox" value="pizza" /><label>pizza</label>
+                        <br><input type="checkbox" value="potted plant" /><label>potted plant</label>
+                        <br><input type="checkbox" value="refrigerator" /><label>refrigerator</label>
+                        <br><input type="checkbox" value="remote" /><label>remote</label>
+                        <br><input type="checkbox" value="sandwich" /><label>sandwich</label>
+                        <br><input type="checkbox" value="scissors" /><label>scissors</label>
+                        <br><input type="checkbox" value="sheep" /><label>sheep</label>
+                        <br><input type="checkbox" value="sink" /><label>sink</label>
+                        <br><input type="checkbox" value="skateboard" /><label>skateboard</label>
+                        <br><input type="checkbox" value="skis" /><label>skis</label>
+                        <br><input type="checkbox" value="snowboard" /><label>snowboard</label>
+                        <br><input type="checkbox" value="spoon" /><label>spoon</label>
+                        <br><input type="checkbox" value="sports ball" /><label>sports ball</label>
+                        <br><input type="checkbox" value="stop sign" /><label>stop sign</label>
+                        <br><input type="checkbox" value="suitcase" /><label>suitcase</label>
+                        <br><input type="checkbox" value="surfboard" /><label>surfboard</label>
+                        <br><input type="checkbox" value="teddy bear" /><label>teddy bear</label>
+                        <br><input type="checkbox" value="tennis racket" /><label>tennis racket</label>
+                        <br><input type="checkbox" value="tie" /><label>tie</label>
+                        <br><input type="checkbox" value="toaster" /><label>toaster</label>
+                        <br><input type="checkbox" value="toilet" /><label>toilet</label>
+                        <br><input type="checkbox" value="toothbrush" /><label>toothbrush</label>
+                        <br><input type="checkbox" value="traffic light" /><label>traffic light</label>
+                        <br><input type="checkbox" value="train" /><label>train</label>
+                        <br><input type="checkbox" value="truck" /><label>truck</label>
+                        <br><input type="checkbox" value="tv" /><label>tv</label>
+                        <br><input type="checkbox" value="umbrella" /><label>umbrella</label>
+                        <br><input type="checkbox" value="vase" /><label>vase</label>
+                        <br><input type="checkbox" value="wine glass" /><label>wine glass</label>
+                        <br><input type="checkbox" value="zebra" /><label>zebra</label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="contain">
+                <p id="treeText"></p>
+                <div id="treemap"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="contain">
+                <div id="allImages">
+                    <div id="percentageImages"></div>
+                    <p class="menutext">Click on any <underline>image</underline> to check its source.</p>
+                    <div id="images"></div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="imgContainer">
+            <div id="immagini">
+                <button id="nextimage">reveal image</button>
+                <div id="image4" class="imageFlickr captions"></div>
+                <div id="image1"></div>
+                <div id="image2"></div>
+                <div id="image3"></div>
+            </div>
+            <div id="info"></div>
+        </div>
+
+        <div id="infoContainer">
+            <div id="infoMenu">
+                <p>Colophon</p>
+                <br>
+                <br>
+                <p>
+                    The central goal of computer vision systems is to make sense of visual material. This is achieved by
+                    feeding large-scale collections of semantically enriched images – where each element in each frame
+                    has been explicitly described by a human being – to artificial agents. Based on this ‘reading’ of
+                    the source material, Artificial Intelligence learns to discern what our world looks like. Most of
+                    the time such datasets are its only teachers, and thus the datasets play a crucial role in machine
+                    learning. When studying them carefully, it becomes clear that in general little attention is paid to
+                    the quality and the origins of the data which carry – together with information – also unfairness
+                    and biases.
+                    <br>
+                    <br>
+                    The current website displays all the elements from a specific dataset: MS COCO. Created by Microsoft
+                    Research, COCO
+                    shows many examples of common objects in context and offers ground truth guidelines for many
+                    computer vision systems. COCO has been created by web scraping a large collection of images from
+                    Flickr. As a consequence, this gives an implicit US-centred connotation to the resource.
+                    <br>
+                    <br>
+                    This website is an attempt to reverse engineering the resource in order to
+                    geolocate all of its original images and link them to their original Flickr links. In the form of an
+                    interactive database, the website wants to emphasise the geographical biases embedded within the systems.
+
+                </p>
+            </div>
+
+        </div>
+        <div id="mobile">
+            This website contains complex visualizations that are not compatible with the restrictions of small screen
+            formats. For an optimal navigation experience, go to your desktop browser.
+        </div>
+    </article>
+</body>
+
+</html>
