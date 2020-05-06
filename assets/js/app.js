@@ -8,7 +8,7 @@ var filename = "may2019"
 var thiscategory = []
 
 // loads my database (tsv) and filters the database
-$(document).ready(function () {
+$(document).ready(function() {
     console.log('%c Im in love with the COCO', 'color:olive; font-size:14px; font-family: Fk Grotesk;width:100%');
 
     // show loader
@@ -25,7 +25,7 @@ $(document).ready(function () {
      </div>
      `);
 
-    d3.tsv("data/" + filename + ".tsv", function (parsedData) {
+    d3.tsv("data/" + filename + ".tsv", function(parsedData) {
         $("#imgContainer").fadeIn(1);
         $("#infoContainer").fadeIn(1);
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
         async function startImages() {
             $("#images").html("");
             $("#treemap").html("");
-            parsedData.filter(function (d, i) {
+            parsedData.filter(function(d, i) {
                 if (i < imagesToLoad) {
                     try {
                         // $("#images").append("<a target='_blank' href=" + d.LINK + "><img id='imgCategories' src= " + d.COCOSTUFF + " </></a>");
@@ -45,8 +45,7 @@ $(document).ready(function () {
                             startCsv += d.COUNTRY + "," + d.ORIGINAL + "," + d.COCOSTUFF + "\n"
 
                         }
-                    }
-                    catch{
+                    } catch {
                         return;
                     }
                 }
@@ -60,9 +59,9 @@ $(document).ready(function () {
         startImages()
 
         // when the input changes - load treemap
-        $("input").change(async function () {
+        $("input").change(async function() {
             cocoUnique = []
-            thiscategory = $('input[type=checkbox]:checked').map(function () {
+            thiscategory = $('input[type=checkbox]:checked').map(function() {
                 return this.value;
             }).get();
 
@@ -84,7 +83,7 @@ $(document).ready(function () {
                 </div>
                 `);
 
-                setTimeout(function () { parseDatabase(thiscategory); }, 500)
+                setTimeout(function() { parseDatabase(thiscategory); }, 500)
 
             } else {
                 $("input").css("background", "var(--text-color)");
@@ -123,7 +122,7 @@ $(document).ready(function () {
 
             var cocoTags = []
 
-            await parsedData.filter(function (d) {
+            await parsedData.filter(function(d) {
                 resetDivs()
 
                 try {
@@ -137,7 +136,7 @@ $(document).ready(function () {
                         parseCsv += d.COUNTRY + "," + d.ORIGINAL + "," + d.COCOSTUFF + "\n"
 
                         cocoTags.push(cocoTagsCLean[0])
-                        // cocoUnique = cocoTags.filter((item, index, array) => array.indexOf(item) === index)
+                            // cocoUnique = cocoTags.filter((item, index, array) => array.indexOf(item) === index)
                         cocoUnique = cocoTagsCLean
 
                         var inputValue = document.getElementsByTagName("input");
@@ -157,8 +156,7 @@ $(document).ready(function () {
 
                         }
                     }
-                }
-                catch{
+                } catch {
                     return;
                 }
             });
@@ -166,8 +164,7 @@ $(document).ready(function () {
             var data = await d3.csvParse(parseCsv)
             try {
                 await buildTreemap(data)
-            }
-            catch{
+            } catch {
                 $("#images").html("No Images found");
                 return
             }
@@ -183,25 +180,24 @@ $(document).ready(function () {
 })
 
 // on click handler on images
-$(document).on('click', '#imgCategories', function () {
+$(document).on('click', '#imgCategories', function() {
     resetDivs()
     var getImage = $(this).attr("src");
-    d3.tsv("data/" + filename + ".tsv", async function (parsedData) {
+    d3.tsv("data/" + filename + ".tsv", async function(parsedData) {
 
-        await parsedData.filter(function (d) {
+        await parsedData.filter(function(d) {
             try {
                 if (d.COCOSTUFF.replace("coco_stuff", "coco_stuff_thumb").includes(getImage)) {
                     console.log("Starting")
                     $("#image1").append("<img src='" + d.COCOSTUFF + "' />");
-                    if (d.COCOKEY !== "NULL") {
-                        $("#image2").append("<img src='" + d.COCOKEY + "' />");
-                        hasKeypoints = true;
-                    }
-                    else {
-                        hasKeypoints = false;
-                    }
+                    // if (d.COCOKEY !== "NULL") {
+                    //     $("#image2").append("<img src='" + d.COCOKEY + "' />");
+                    //     hasKeypoints = true;
+                    // } else {
+                    //     hasKeypoints = false;
+                    // }
 
-                    $("#image3").append("<img src='" + d.COCOTAG + "' />");
+                    // $("#image3").append("<img src='" + d.COCOTAG + "' />");
                     $("#image4").append("<img src='" + d.ORIGINAL + "' />");
                     $("#info").html(
 
@@ -237,20 +233,19 @@ $(document).on('click', '#imgCategories', function () {
 
 
                 }
-            }
-            catch{
+            } catch {
                 return;
             }
         });
     })
 });
 
-$(document).on('click', 'info', function () {
+$(document).on('click', 'info', function() {
     $("#infoContainer").toggleClass("menuOut");
 });
 
 // Closes the menu when click outside the div
-$(document).on("click", function (e) {
+$(document).on("click", function(e) {
     if (document.getElementById('immagini').contains(e.target) || document.getElementById('info').contains(e.target)) {
         return
     } else {
@@ -307,45 +302,45 @@ function parseImage() {
     }
 
     if (n == 2 && hasKeypoints == false) {
-        n += 1;
+        n = 1;
         $("#image1").fadeOut(1);
-        $("#cocoData").css("display", "block");
-    }
-
-    if (n >= 2) {
-        $("#image" + (n - 1)).fadeOut(1);
-        $("#image" + n).fadeIn(1);
-    }
-
-    if (n == 3) {
-        $("#cocoData").css("display", "block");
-    }
-
-    if (n == 4) {
-        $("#cocoDesc").css("display", "block");
         $(".imageFlickr").css("filter", "grayscale(0)");
         $(".imageFlickr > img").css("opacity", 1);
     }
-    if (n != 4) {
-        $("#cocoDesc").css("display", "none");
-    }
 
-    if (n >= 5) {
-        n = 1;
-        $("#image1").fadeIn(1);
-    }
+    // if (n >= 2) {
+    //     $("#image" + (n - 1)).fadeOut(1);
+    //     $("#image" + n).fadeIn(1);
+    // }
+
+    // if (n == 3) {
+    //     $("#cocoData").css("display", "block");
+    // }
+
+    // if (n == 4) {
+    //     $("#cocoDesc").css("display", "block");
+    //     $(".imageFlickr").css("filter", "grayscale(0)");
+    //     $(".imageFlickr > img").css("opacity", 1);
+    // }
+    // if (n != 4) {
+    //     $("#cocoDesc").css("display", "none");
+    // }
+
+    // if (n >= 2) {
+    //     n = 1;
+    //     $("#image1").fadeIn(1);
+    // }
 }
 
 // Read data - builds a d3 svg treemap
-var buildTreemap = function (data) {
+var buildTreemap = function(data) {
     resetDivs()
-    // set the dimensions and margins of the graph
+        // set the dimensions and margins of the graph
     if ($(window).width() < 900) {
         var margin = { top: 10, right: 0, bottom: 10, left: 0 },
             width = window.innerWidth - margin.left - (margin.right * 6),
             height = window.innerHeight / 2 - margin.top - (margin.bottom * 6);
-    }
-    else {
+    } else {
         var margin = { top: 10, right: 5, bottom: 10, left: 0 },
             width = window.innerWidth / 2.5 - margin.left - (margin.right * 6), //2.5 40%
             height = window.innerHeight / 2.2 - margin.top - (margin.bottom * 6);
@@ -362,18 +357,18 @@ var buildTreemap = function (data) {
             "translate(" + margin.left + "," + margin.top + ")");
 
     var nest = d3.nest()
-        .key(function (d) { return d.index })
+        .key(function(d) { return d.index })
         .entries(data)
 
     var hierarchy = d3.hierarchy({
 
-        values: nest.map(item => {
-            item.value = item.values.length
-            return item
-        })
-    }, d => d.values)
-        .sum(function (d) { return d.value })
-        .sort(function (a, b) { return b.value - a.value })
+            values: nest.map(item => {
+                item.value = item.values.length
+                return item
+            })
+        }, d => d.values)
+        .sum(function(d) { return d.value })
+        .sort(function(a, b) { return b.value - a.value })
 
     var imageArray = hierarchy.data.values.map(item => {
         return item.values.map(datum => {
@@ -396,18 +391,18 @@ var buildTreemap = function (data) {
         .enter()
         .append("g") //image?
         .attr("class", "rect")
-        .attr("transform", function (d) { return "translate(" + d.x0 + "," + d.y0 + ")" })
+        .attr("transform", function(d) { return "translate(" + d.x0 + "," + d.y0 + ")" })
 
 
     group.append("rect")
         .attr('x', 0)
         .attr('y', 0)
-        .attr('width', function (d) { return d.x1 - d.x0; })
-        .attr('height', function (d) { return d.y1 - d.y0; })
+        .attr('width', function(d) { return d.x1 - d.x0; })
+        .attr('height', function(d) { return d.y1 - d.y0; })
         // .style("stroke", "var(--background-color)")
         // .style("stroke-width", "1px")
         .style("fill", "var(--text-color)")
-        .on("click", function () {
+        .on("click", function() {
             d3.selectAll("rect").style("fill", "var(--text-color)");
             d3.selectAll("text").style("fill", "var(--background-color)");
             d3.select(this).style("fill", "var(--background-color)");
@@ -417,10 +412,10 @@ var buildTreemap = function (data) {
 
 
     group.append("text")
-        .attr("xlink:href", function (d) { return d.data.key })
-        .attr("x", 1)    // +10 to adjust position (more right)
-        .attr("y", 12)    // +20 to adjust position (lower)
-        .text(function (d) {
+        .attr("xlink:href", function(d) { return d.data.key })
+        .attr("x", 1) // +10 to adjust position (more right)
+        .attr("y", 12) // +20 to adjust position (lower)
+        .text(function(d) {
             for (state = 0; state < countries.length; state++) {
                 if (countries[state].name == d.data.key) {
                     return countries[state].code
@@ -429,7 +424,7 @@ var buildTreemap = function (data) {
             // return d.data.key
         })
         // .attr("font-size", "12px")
-        .attr("font-size", function () {
+        .attr("font-size", function() {
             // gets the area
             var element = d3.select(this.parentNode).node();
             var mainWidth = element.getBoundingClientRect().width
@@ -443,10 +438,10 @@ var buildTreemap = function (data) {
             }
         })
 
-        .style("fill", "var(--background-color)")
+    .style("fill", "var(--background-color)")
 
 
-    group.on('click', function () {
+    group.on('click', function() {
         resetDivs()
 
         var stateName = d3.select(this).text();
@@ -470,8 +465,7 @@ var buildTreemap = function (data) {
 
                 if (thiscategory.length > 0) {
                     $("#percentageImages").html("<p class='thiscategory'>" + thiscategory.toString().replace(/\,/g, '</p> <p class="thiscategory">') + "</p><p class='underline'> is " + Math.round(hierarchy.data.values[i].values.length * (100 / hierarchy.value)) + "%</p><p> from </p><p class='underline'>" + thisState.name + "</p><p>. </p><br>");
-                }
-                else {
+                } else {
                     $("#percentageImages").html("<p> The images in MS COCO are </p><p class='underline'>" + Math.round(hierarchy.data.values[i].values.length * (100 / hierarchy.value)) + "%</p><p> from </p><p class='underline'>" + thisState.name + "</p><p>. </p><br>");
                 }
                 for (j = 0; j < hierarchy.data.values[i].values.length; j++) {
